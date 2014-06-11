@@ -1,5 +1,6 @@
 package com.tundem.aboutlibraries.ui.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -123,11 +124,9 @@ public class LibsListViewAdapter extends BaseAdapter {
             holder.libraryBottomContainer.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    try {
-                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(library.getLicense().getLicenseWebsite()));
-                        parent.getContext().startActivity(browserIntent);
-                    } catch (Exception ex) {
-                    }
+                    AlertDialog.Builder builder = new AlertDialog.Builder(parent.getContext());
+                    builder.setMessage(library.getLicense().getLicenseDescription());
+                    builder.create().show();
                 }
             });
         }
