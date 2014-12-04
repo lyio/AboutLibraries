@@ -1,19 +1,47 @@
-apply plugin: 'android'
+apply plugin: 'com.android.application'
+//wrap with try and catch so the build is working even if the signing stuff is missing
+try {
+    apply from: '../../../signing.gradle'
+} catch (ex) {
+}
+
 
 android {
-    compileSdkVersion 19
-    buildToolsVersion '19.1.0'
+    compileSdkVersion 21
+    buildToolsVersion '21.1.1'
     defaultConfig {
-        applicationId 'com.tundem.aboutlibraries.sample'
-        minSdkVersion 16
-        targetSdkVersion 19
-        versionCode 200
-        versionName '2.0.0'
+        applicationId 'com.mikepenz.aboutlibraries.sample'
+        minSdkVersion 11
+        targetSdkVersion 21
+        versionCode 440
+        versionName '4.4.0'
+
+        applicationVariants.all { variant ->
+            variant.outputs.each { output ->
+                def file = output.outputFile
+                def fileName = file.name.replace(".apk", "-v" + versionName + "-c" + versionCode + ".apk")
+                output.outputFile = new File(file.parentFile, fileName)
+            }
+        }
     }
+
     buildTypes {
+        debug {
+            applicationIdSuffix ".debug"
+            versionNameSuffix "-DEBUG"
+            try {
+                signingConfig signingConfigs.debug
+            } catch (ex) {
+            }
+            minifyEnabled false
+        }
         release {
-            runProguard false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            try {
+                signingConfig signingConfigs.release
+            } catch (ex) {
+            }
+            zipAlignEnabled true
+            minifyEnabled false
         }
     }
     productFlavors {

@@ -1,28 +1,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:tools="http://schemas.android.com/tools"
+      xmlns:tools="http://schemas.android.com/tools" xmlns:app="http://schemas.android.com/apk/res-auto"
       tools:context=".MainActivity">
-    <item android:id="@+id/action_manifestactivity"
-          android:title="@string/action_manifestactivity"
-          android:showAsAction="never"/>
-    <item android:id="@+id/action_extendactivity"
-          android:title="@string/action_extendactivity"
-          android:showAsAction="never"/>
-    <item android:id="@+id/action_fragmentactivity"
-          android:title="@string/action_fragmentactivity"
-          android:showAsAction="never"/>
     <item android:id="@+id/action_all"
           android:title="@string/action_all"
-          android:showAsAction="never"/>
+          app:showAsAction="never"/>
     <item android:id="@+id/action_external"
           android:title="@string/action_external"
-          android:showAsAction="never"/>
+          app:showAsAction="never"/>
     <item android:id="@+id/action_internal"
           android:title="@string/action_internal"
-          android:showAsAction="never"/>
+          app:showAsAction="never"/>
     <item android:id="@+id/action_defined"
           android:title="@string/action_defined"
-          android:showAsAction="never"/>
-    <item android:id="@+id/action_opensource"
-          android:title="@string/action_opensource"
-          android:showAsAction="never"/>
+          app:showAsAction="never"/>
 </menu>
